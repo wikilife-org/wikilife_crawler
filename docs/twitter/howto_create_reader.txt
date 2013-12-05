@@ -1,0 +1,23 @@
+How-to create reader:
+=====================
+
+1. Extends base reader class
+/wikilife_crawler/wikilife_crawler/twitter/device_tweets_crawler/device_reader.py
+and save the new reader class file in 
+/wikilife_crawler/wikilife_crawler/twitter/device_tweets_crawler/readers/{reader-name}.py
+e.g: 
+/wikilife_crawler/wikilife_crawler/twitter/device_tweets_crawler/readers/fitbit.py
+
+2. Create the required unit tests in:
+/wikilife_crawler/wikilife_crawler/tests/twitter/device_tweets_crawler/readers/{reader-name}_tests.py
+e.g: 
+/wikilife_crawler/wikilife_crawler/tests/twitter/device_tweets_crawler/readers/fitbit_tests.py
+
+3. Create the required integration tests in:
+/wikilife_crawler/wikilife_crawler/tests/twitter/device_tweets_crawler/device_tweets_crawler_tests.py
+
+4. Implement the reader. Should be done just by implementing the abstract DeviceReader methods: get_filter(since_id), get_root_slug() and get_nodes_info() 
+If a specific custom behabiour is needed you may override other DeviceReader methods. Take a look at the read() method.
+
+5. Add reader instance in 
+/wikilife_crawler/wikilife_crawler/twitter/device_tweets_crawler/cron_script.py
