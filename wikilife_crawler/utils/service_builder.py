@@ -6,6 +6,7 @@ from wikilife_crawler.twitter.device_tweets_crawler.device_tweets_crawler import
     DeviceTweetsCrawler
 from wikilife_crawler.twitter.device_tweets_crawler.reader_builder import \
     ReaderBuilder
+from wikilife_crawler.jobs.twitter_location import TwitterLocation
 
 
 class ServiceBuilder(object):
@@ -33,3 +34,8 @@ class ServiceBuilder(object):
         readers = reader_builder.build_reader_list(reader_class_fullname_list)
 
         return DeviceTweetsCrawler(self._logger, meta_dao, readers)
+
+    def build_tweet_user_location(self):
+        twitter_user_srv = self._biz_srv_bldr.build_twitter_user_service()
+
+        return TwitterLocation(self._logger,  twitter_user_srv)

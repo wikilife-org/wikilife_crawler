@@ -11,6 +11,11 @@ def run(settings):
     service_builder = _create_service_builder(settings)
     crawler = service_builder.build_device_tweets_crawler()
     crawler.crawl()
+    
+def run_history_location(settings):
+    service_builder = _create_service_builder(settings)
+    history_location = service_builder.build_tweet_user_location()
+    history_location.run()
 
 def check_readers_meta_dependencies(settings):
     service_builder = _create_service_builder(settings)
@@ -43,7 +48,9 @@ if __name__ == '__main__':
 
     elif cmd == "help":
         display_help()
-
+        
+    elif cmd == "run_history_location":
+        run_history_location(settings)
     else:
         print "Unknown command '%s', use:\n" %cmd
         display_help()
